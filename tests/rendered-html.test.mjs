@@ -20,8 +20,14 @@ test("renderiza a página institucional", async () => {
   assert.match(html, /Associação Capitular Adonhiramita/);
   assert.match(html, /Conhecer a História do Rito/);
   assert.match(html, /Área restrita/);
-  assert.doesNotMatch(html, /Acessar o SGLFM|Acessar o sistema/);
+  assert.doesNotMatch(html, /Acessar o SGLFM|Acessar o sistema|Entrar no sistema/);
   assert.doesNotMatch(html, /John Doe|Twenty Twenty-Five|codex-preview/);
+});
+
+test("usa metadados próprios nas páginas institucionais", async () => {
+  const response = await render("/links");
+  const html = await response.text();
+  assert.match(html, /<title>Links institucionais \| Associação Capitular Adonhiramita<\/title>/);
 });
 
 test("renderiza a publicação histórica completa", async () => {

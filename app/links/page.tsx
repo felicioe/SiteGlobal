@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { SiteChrome } from "../components/SiteChrome";
+
+export const metadata: Metadata = {
+  title: "Links institucionais | Associação Capitular Adonhiramita",
+  description: "Referências externas e portais institucionais relacionados ao Rito Adonhiramita.",
+};
 
 const links = [
   {

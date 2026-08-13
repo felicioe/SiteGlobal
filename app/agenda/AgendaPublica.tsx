@@ -34,6 +34,15 @@ function dataDaSessao(data: string) {
   };
 }
 
+function rotuloDoGrau(grau: number, nome: string | null) {
+  const nomeLimpo = nome?.trim();
+  const nomeNormalizado = nomeLimpo?.toLocaleLowerCase("pt-BR").replace(/\s+/g, " ");
+  if (!nomeLimpo || nomeNormalizado === `grau ${grau}` || nomeNormalizado === String(grau)) {
+    return `Grau ${grau}`;
+  }
+  return `Grau ${grau} — ${nomeLimpo}`;
+}
+
 export function AgendaPublica() {
   const [agenda, setAgenda] = useState<Sessao[] | null>(null);
   const [erro, setErro] = useState(false);
@@ -85,7 +94,7 @@ export function AgendaPublica() {
                 {data.horario && <span>{data.horario}</span>}
                 {sessao.corpo && <span>{sessao.corpo}</span>}
               </div>
-              <h2>Grau {sessao.grau}{sessao.nome_grau ? ` — ${sessao.nome_grau}` : ""}</h2>
+              <h2>{rotuloDoGrau(sessao.grau, sessao.nome_grau)}</h2>
               {sessao.trabalhos.length > 0 ? (
                 <div className="agenda-works">
                   {sessao.trabalhos.map((trabalho, index) => (

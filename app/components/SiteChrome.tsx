@@ -28,6 +28,20 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <a className="header-access" href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
           Área restrita
         </a>
+        <details className="mobile-nav">
+          <summary aria-label="Abrir menu de navegação">
+            <span aria-hidden="true"><i /><i /><i /></span>
+            Menu
+          </summary>
+          <nav aria-label="Navegação móvel">
+            {navigation.map(([label, href]) => (
+              <Link href={href} key={href}>{label}</Link>
+            ))}
+            <a href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
+              Área restrita
+            </a>
+          </nav>
+        </details>
       </header>
       <div id="conteudo">{children}</div>
       <footer className="site-footer">

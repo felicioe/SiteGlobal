@@ -80,10 +80,6 @@ export default function Home() {
               <span>Referências e instituições</span>
               <strong>Links institucionais</strong>
             </Link>
-            <a href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
-              <span>Ambiente reservado</span>
-              <strong>Entrar no sistema</strong>
-            </a>
           </div>
         </section>
       </main>
