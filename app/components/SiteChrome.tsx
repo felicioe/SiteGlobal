@@ -41,7 +41,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <p>Conteúdo institucional. Informações reservadas permanecem no ambiente restrito.</p>
         <div className="footer-links">
           <Link href="/links">Links institucionais</Link>
-          <a href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">Acessar o sistema</a>
         </div>
       </footer>
     </div>

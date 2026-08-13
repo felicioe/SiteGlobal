@@ -18,7 +18,9 @@ test("renderiza a página institucional", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Associação Capitular Adonhiramita/);
-  assert.match(html, /Acessar o SGLFM/);
+  assert.match(html, /Conhecer a História do Rito/);
+  assert.match(html, /Área restrita/);
+  assert.doesNotMatch(html, /Acessar o SGLFM|Acessar o sistema/);
   assert.doesNotMatch(html, /John Doe|Twenty Twenty-Five|codex-preview/);
 });
 

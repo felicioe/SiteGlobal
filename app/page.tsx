@@ -31,11 +31,8 @@ export default function Home() {
               Capítulo Adonhiramita Ayres Gevaerd.
             </p>
             <div className="hero__actions">
-              <a className="button button--primary" href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
-                Acessar o SGLFM
-              </a>
-              <Link className="button button--quiet" href="/instituicoes">
-                Conhecer as instituições
+              <Link className="button button--primary" href="/historia">
+                Conhecer a História do Rito
               </Link>
             </div>
           </div>
@@ -47,12 +44,12 @@ export default function Home() {
 
         <section className="intro" aria-labelledby="intro-title">
           <div>
-            <h2 id="intro-title">Duas oficinas, uma história em construção.</h2>
+            <h2 id="intro-title">Duas oficinas, uma tradição em continuidade.</h2>
           </div>
           <p>
-            Este espaço reunirá informações institucionais, referências sobre o
-            Rito Adonhiramita e caminhos seguros para os ambientes oficiais. Os
-            conteúdos históricos serão publicados somente após revisão e aprovação.
+            Conheça a origem, os símbolos, a formação na França do século XVIII
+            e a trajetória do Rito Adonhiramita no Brasil em nossa publicação
+            histórica, com leitura integral disponível neste portal.
           </p>
         </section>
 
