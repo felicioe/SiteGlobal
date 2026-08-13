@@ -25,10 +25,12 @@ for (const route of routes) {
   if (!response.ok) throw new Error(`Falha ao renderizar ${route}: ${response.status}`);
 
   let html = await response.text();
-  html = html
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
-    .replace(/<link\b[^>]*rel=["']modulepreload["'][^>]*>/gi, "")
-    .replace(/<link\b[^>]*as=["']script["'][^>]*>/gi, "");
+  if (route !== "/agenda") {
+    html = html
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<link\b[^>]*rel=["']modulepreload["'][^>]*>/gi, "")
+      .replace(/<link\b[^>]*as=["']script["'][^>]*>/gi, "");
+  }
 
   const routeDir = route === "/" ? output : path.join(output, route.slice(1));
   await mkdir(routeDir, { recursive: true });
@@ -36,7 +38,7 @@ for (const route of routes) {
 }
 
 await cp(path.join(root, "dist/client/assets"), path.join(output, "assets"), { recursive: true });
-for (const directory of ["brand", "institucional"]) {
+for (const directory of ["brand", "institucional", "publicacoes"]) {
   await cp(path.join(root, "public", directory), path.join(output, directory), { recursive: true });
 }
 await cp(path.join(root, "public/favicon.svg"), path.join(output, "favicon.svg"));

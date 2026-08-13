@@ -22,10 +22,21 @@ test("renderiza a página institucional", async () => {
   assert.doesNotMatch(html, /John Doe|Twenty Twenty-Five|codex-preview/);
 });
 
-test("renderiza páginas ainda não publicadas como em construção", async () => {
+test("renderiza a publicação histórica completa", async () => {
   const response = await render("/historia");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Em construção/);
-  assert.match(html, /após revisão e aprovação institucional/);
+  assert.match(html, /O Rito Adonhiramita/);
+  assert.match(html, /Leitura integral/);
+  assert.match(html, /o-rito-adonhiramita-historia\.pdf/);
+  assert.doesNotMatch(html, /Em construção/);
+});
+
+test("renderiza a agenda pública sem nomes civis", async () => {
+  const response = await render("/agenda");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Agenda/);
+  assert.match(html, /nomes históricos/);
+  assert.doesNotMatch(html, /nome_civil|nome profano/);
 });
