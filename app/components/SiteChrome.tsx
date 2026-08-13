@@ -17,7 +17,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Página inicial do SGLFM">
-          <Image src="/brand/sglfm-mark.svg" alt="" width={26} height={34} />
+          <Image src="/brand/sglfm-mark.svg" alt="" width={26} height={34} unoptimized />
           <span>SGLFM</span>
         </Link>
         <nav aria-label="Navegação principal">
@@ -32,7 +32,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <div id="conteudo">{children}</div>
       <footer className="site-footer">
         <div className="footer-brand">
-          <Image src="/brand/sglfm-mark.svg" alt="" width={24} height={31} />
+          <Image src="/brand/sglfm-mark.svg" alt="" width={24} height={31} unoptimized />
           <div>
             <strong>SGLFM</strong>
             <span>Sistema de Gestão de Loja Filosófica Maçônica</span>

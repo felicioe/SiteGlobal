@@ -7,7 +7,7 @@ export function ConstructionPage({ title }: { title: string }) {
     <SiteChrome>
       <main className="construction">
         <div className="construction__mark" aria-hidden="true">
-          <Image src="/brand/sglfm-mark.svg" alt="" width={48} height={60} />
+          <Image src="/brand/sglfm-mark.svg" alt="" width={48} height={60} unoptimized />
         </div>
         <p>{title}</p>
         <h1>Em construção</h1>

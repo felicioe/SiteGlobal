@@ -21,7 +21,7 @@ export default function Home() {
       <main>
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero__seal" aria-hidden="true">
-            <Image src="/brand/sglfm-mark.svg" alt="" width={84} height={105} />
+            <Image src="/brand/sglfm-mark.svg" alt="" width={84} height={105} unoptimized />
           </div>
           <div className="hero__content">
             <p className="hero__institution">Associação Capitular Adonhiramita ao Vale de Itajaí</p>
@@ -40,7 +40,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__symbol" aria-hidden="true">
-            <Image src="/institucional/stekna-sgcab.jpeg" alt="" width={170} height={146} />
+            <Image src="/institucional/stekna-sgcab.jpeg" alt="" width={170} height={146} unoptimized />
           </div>
           <div className="hero__line" aria-hidden="true" />
         </section>
@@ -60,7 +60,7 @@ export default function Home() {
           {entities.map((entity) => (
             <article className="entity" key={entity.name}>
               <div className="entity__logo">
-                <Image src={entity.logo} alt="" width={118} height={105} />
+                <Image src={entity.logo} alt="" width={118} height={105} unoptimized />
               </div>
               <div>
                 <h2>{entity.name}</h2>
