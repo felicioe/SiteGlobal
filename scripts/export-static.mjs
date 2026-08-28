@@ -4,7 +4,7 @@ import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
 const output = path.join(root, "static-site");
-const routes = ["/", "/instituicoes", "/historia", "/agenda", "/publicacoes", "/links", "/contato"];
+const routes = ["/", "/instituicoes", "/historia", "/agenda", "/publicacoes", "/pagina", "/links", "/contato"];
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -25,13 +25,6 @@ for (const route of routes) {
   if (!response.ok) throw new Error(`Falha ao renderizar ${route}: ${response.status}`);
 
   let html = await response.text();
-  if (route !== "/agenda") {
-    html = html
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
-      .replace(/<link\b[^>]*rel=["']modulepreload["'][^>]*>/gi, "")
-      .replace(/<link\b[^>]*as=["']script["'][^>]*>/gi, "");
-  }
-
   const backNavigation = `<script>(function(){document.addEventListener("click",function(event){var target=event.target;if(!(target instanceof Element))return;var link=target.closest("a[data-back-link]");if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;if(window.history.length>1){event.preventDefault();window.history.back();}});})();</script>`;
   html = html.replace("</body>", `${backNavigation}</body>`);
 

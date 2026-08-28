@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-const navigation = [
+const fallbackNavigation = [
   ["Início", "/"],
   ["Instituições", "/instituicoes"],
   ["Nossa História", "/historia"],
@@ -11,6 +14,20 @@ const navigation = [
   ["Contato", "/contato"],
 ];
 
+type ItemMenu = {
+  label: string;
+  tipo_destino: "pagina" | "agenda" | "noticias" | "link_externo";
+  destino: string;
+  filhos: ItemMenu[];
+};
+
+function hrefDoItem(item: ItemMenu) {
+  if (item.tipo_destino === "pagina") return `/pagina?slug=${encodeURIComponent(item.destino)}`;
+  if (item.tipo_destino === "agenda") return "/agenda";
+  if (item.tipo_destino === "noticias") return "/publicacoes";
+  return item.destino;
+}
+
 type SiteChromeProps = {
   children: React.ReactNode;
   currentPath?: string;
@@ -18,6 +35,20 @@ type SiteChromeProps = {
 };
 
 export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteChromeProps) {
+  const [navigation, setNavigation] = useState(fallbackNavigation);
+
+  useEffect(() => {
+    fetch("https://sistema.associacaoadonhiramita.org/api/publico/menu")
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((payload: { menu?: ItemMenu[] }) => {
+        if (!Array.isArray(payload.menu) || payload.menu.length === 0) return;
+        setNavigation([
+          ["Início", "/"],
+          ...payload.menu.map((item) => [item.label, hrefDoItem(item)]),
+        ]);
+      })
+      .catch(() => undefined);
+  }, []);
   return (
     <div className="site-shell">
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
