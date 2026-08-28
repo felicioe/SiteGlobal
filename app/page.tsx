@@ -37,7 +37,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__symbol" aria-hidden="true">
-            <Image src="/institucional/stekna-sgcab.jpeg" alt="" width={170} height={146} unoptimized />
+            <Image src="/institucional/stekna-sgcab.webp" alt="" width={170} height={146} unoptimized />
           </div>
           <div className="hero__line" aria-hidden="true" />
         </section>

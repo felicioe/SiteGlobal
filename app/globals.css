@@ -64,6 +64,25 @@ img { display: block; max-width: 100%; }
 .mobile-nav nav { position: absolute; top: calc(100% + 12px); right: 0; width: min(82vw, 320px); display: grid; padding: 10px; border: 1px solid var(--line); background: var(--ink-soft); box-shadow: 0 20px 44px rgba(0,0,0,.34); }
 .mobile-nav nav a { min-height: 48px; display: flex; align-items: center; padding-inline: 14px; border-bottom: 1px solid rgba(255,255,255,.08); color: #e5eaf0; text-decoration: none; font-size: .9rem; font-weight: 750; }
 .mobile-nav nav a:last-child { border-bottom: 0; color: var(--gold-light); }
+.site-header nav a[aria-current="page"], .mobile-nav nav a[aria-current="page"] { color: var(--gold-light); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+
+.page-context {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 6px 5vw;
+  border-bottom: 1px solid var(--line);
+  background: rgba(20, 36, 58, .98);
+  color: #d7dee7;
+}
+.page-context a { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; color: var(--gold-light); font-size: .84rem; font-weight: 800; text-decoration: none; }
+.page-context a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.page-context__current { min-width: 0; overflow: hidden; color: var(--muted); font-size: .78rem; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
 
 .hero {
   position: relative;
@@ -82,7 +101,7 @@ img { display: block; max-width: 100%; }
   clip-path: polygon(0 0, 83% 0, 100% 30%, 100% 100%, 17% 100%, 0 70%);
   z-index: -1;
 }
-.hero__content { width: min(860px, 72vw); text-align: center; position: relative; z-index: 2; }
+.hero__content { width: min(860px, 72vw); min-width: 0; max-width: 100%; text-align: center; position: relative; z-index: 2; }
 .hero__institution { color: var(--gold-light); font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; }
 .hero h1 {
   margin: 18px auto 20px;
@@ -219,6 +238,8 @@ img { display: block; max-width: 100%; }
 .agenda-state h2 { margin: 0; font-family: var(--font-display), serif; font-size: 2.2rem; }
 .agenda-state p { color: #687486; }
 .agenda-state button { min-height: 46px; padding: 0 20px; border: 0; background: var(--ink); color: white; font: inherit; font-weight: 800; cursor: pointer; }
+.agenda-state button:hover { background: var(--ink-soft); }
+.agenda-state button:disabled { opacity: .65; cursor: wait; }
 
 .site-footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 50px; align-items: center; padding: 46px 5vw; border-top: 1px solid rgba(255,255,255,.1); color: var(--muted); font-size: .76rem; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
@@ -243,10 +264,12 @@ img { display: block; max-width: 100%; }
   .site-header { min-height: 76px; grid-template-columns: auto auto; padding-block: 12px; }
   .site-header > nav, .site-header > .header-access { display: none; }
   .mobile-nav { display: block; }
+  .page-context { min-height: 52px; padding-inline: 5vw; }
+  .page-context a { min-height: 44px; }
   .hero { min-height: 620px; padding: 90px 6vw 70px; }
   .hero::before { inset: 25px 4vw; }
   .hero__content { width: 100%; }
-  .hero h1 { font-size: clamp(3.3rem, 16vw, 4.7rem); }
+  .hero h1 { max-width: 100%; font-size: clamp(3rem, 13.5vw, 4.1rem); overflow-wrap: anywhere; }
   .hero__institution { max-width: 300px; margin-inline: auto; }
   .hero__seal { left: 7vw; top: 60px; }
   .hero__symbol { width: 110px; right: 5vw; bottom: 38px; }

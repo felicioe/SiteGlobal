@@ -32,6 +32,9 @@ for (const route of routes) {
       .replace(/<link\b[^>]*as=["']script["'][^>]*>/gi, "");
   }
 
+  const backNavigation = `<script>(function(){document.addEventListener("click",function(event){var target=event.target;if(!(target instanceof Element))return;var link=target.closest("a[data-back-link]");if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;if(window.history.length>1){event.preventDefault();window.history.back();}});})();</script>`;
+  html = html.replace("</body>", `${backNavigation}</body>`);
+
   const routeDir = route === "/" ? output : path.join(output, route.slice(1));
   await mkdir(routeDir, { recursive: true });
   await writeFile(path.join(routeDir, "index.html"), html, "utf8");
@@ -42,6 +45,8 @@ for (const directory of ["brand", "institucional", "publicacoes"]) {
   await cp(path.join(root, "public", directory), path.join(output, directory), { recursive: true });
 }
 await cp(path.join(root, "public/favicon.svg"), path.join(output, "favicon.svg"));
+await cp(path.join(root, "public/robots.txt"), path.join(output, "robots.txt"));
+await cp(path.join(root, "public/sitemap.xml"), path.join(output, "sitemap.xml"));
 
 const htaccess = `Options -Indexes
 DirectoryIndex index.html
@@ -50,6 +55,8 @@ ErrorDocument 404 /index.html
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
 </IfModule>
 `;
 await writeFile(path.join(output, ".htaccess"), htaccess, "utf8");

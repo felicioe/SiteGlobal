@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiteChrome } from "./SiteChrome";
 
-export function ConstructionPage({ title }: { title: string }) {
+export function ConstructionPage({ title, path }: { title: string; path: string }) {
   return (
-    <SiteChrome>
+    <SiteChrome currentPath={path} currentLabel={title}>
       <main className="construction">
         <div className="construction__mark" aria-hidden="true">
           <Image src="/brand/sglfm-mark.svg" alt="" width={48} height={60} unoptimized />

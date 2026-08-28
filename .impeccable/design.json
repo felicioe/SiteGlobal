@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-14T12:30:00-03:00",
+  "title": "Design System: Associação Capitular Adonhiramita",
+  "extensions": {
+    "colorMeta": {
+      "deep-ink": { "role": "neutral", "displayName": "Tinta Profunda", "canonical": "#0b1626", "tonalRamp": ["#07101c", "#0b1626", "#14243a", "#34445a", "#59697d", "#8290a1", "#b2bbc5", "#e7ebef"] },
+      "layered-ink": { "role": "neutral", "displayName": "Tinta Estratificada", "canonical": "#14243a", "tonalRamp": ["#09111d", "#14243a", "#263950", "#45596f", "#687b8e", "#91a0ae", "#bdc6ce", "#edf0f2"] },
+      "ceremonial-paper": { "role": "neutral", "displayName": "Papel Cerimonial", "canonical": "#f4f0e7", "tonalRamp": ["#25231f", "#49453e", "#716b61", "#999287", "#beb8ae", "#d8d3ca", "#ebe7df", "#f8f5ef"] },
+      "restrained-gold": { "role": "primary", "displayName": "Ouro Contido", "canonical": "#c6a65b", "tonalRamp": ["#2c220d", "#57451b", "#80682d", "#a68a44", "#c6a65b", "#d8be7d", "#e8d6aa", "#f7efd8"] },
+      "illuminated-gold": { "role": "primary", "displayName": "Ouro Iluminado", "canonical": "#e0c984", "tonalRamp": ["#30280f", "#5d4f20", "#887735", "#b29f52", "#d2ba70", "#e0c984", "#eee0b2", "#fbf4df"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Editorial", "purpose": "Títulos de chegada e marcos históricos." },
+      "headline": { "displayName": "Headline Editorial", "purpose": "Títulos de seção." },
+      "body": { "displayName": "Corpo de Leitura", "purpose": "Texto institucional e documental." },
+      "label": { "displayName": "Rótulo Institucional", "purpose": "Navegação e metadados." }
+    },
+    "shadows": [
+      { "name": "menu-overlay", "value": "0 20px 44px rgba(0,0,0,.34)", "purpose": "Separar o menu móvel do conteúdo." },
+      { "name": "primary-action", "value": "0 12px 30px rgba(0,0,0,.24)", "purpose": "Dar presença discreta ao CTA." },
+      { "name": "document-sheet", "value": "0 24px 54px rgba(0,0,0,.28)", "purpose": "Elevar o PDF sobre a superfície de leitura." }
+    ],
+    "motion": [
+      { "name": "menu-state", "value": "200ms ease", "purpose": "Transformar o ícone do menu entre aberto e fechado." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "720px" },
+      { "name": "compact-desktop", "value": "1050px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação prioritária em ouro cerimonial.",
+      "html": "<button class=\"ds-btn-primary\">CONHECER A HISTÓRIA</button>",
+      "css": ".ds-btn-primary{min-height:50px;padding:0 24px;border:0;border-radius:0;background:var(--gold,#c6a65b);color:var(--ink,#0b1626);font:800 .88rem Manrope,sans-serif;box-shadow:0 12px 30px rgba(0,0,0,.24);cursor:pointer}.ds-btn-primary:hover{background:var(--gold-light,#e0c984)}.ds-btn-primary:focus-visible{outline:3px solid var(--gold-light,#e0c984);outline-offset:4px}"
+    },
+    {
+      "name": "Botão discreto",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Ação secundária transparente sobre superfície escura.",
+      "html": "<button class=\"ds-btn-quiet\">ABRIR EM TELA CHEIA</button>",
+      "css": ".ds-btn-quiet{min-height:50px;padding:0 24px;border:1px solid rgba(255,255,255,.25);border-radius:0;background:transparent;color:#fff;font:800 .88rem Manrope,sans-serif;cursor:pointer}.ds-btn-quiet:hover{border-color:var(--gold,#c6a65b);color:var(--gold-light,#e0c984)}.ds-btn-quiet:focus-visible{outline:3px solid var(--gold-light,#e0c984);outline-offset:4px}"
+    },
+    {
+      "name": "Navegação principal",
+      "kind": "nav",
+      "description": "Links compactos com estado ativo em ouro.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Início</a><a href=\"#\" aria-current=\"page\">História</a><a href=\"#\">Agenda</a></nav>",
+      "css": ".ds-nav{display:flex;gap:24px;align-items:center;background:var(--ink,#0b1626);padding:18px 24px}.ds-nav a{min-height:44px;display:inline-flex;align-items:center;color:#d7dee7;font:700 .8rem Manrope,sans-serif;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current=page]{color:var(--gold-light,#e0c984);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:8px}.ds-nav a:focus-visible{outline:3px solid var(--gold-light,#e0c984);outline-offset:4px}"
+    },
+    {
+      "name": "Barra contextual",
+      "kind": "nav",
+      "description": "Retorno persistente e orientação nas páginas internas.",
+      "html": "<nav class=\"ds-context\"><a href=\"#\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M15 5 8 12l7 7\"/></svg>Voltar ao início</a><span>Nossa História</span></nav>",
+      "css": ".ds-context{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:6px 5vw;border-bottom:1px solid var(--line,rgba(198,166,91,.3));background:var(--ink-soft,#14243a);font-family:Manrope,sans-serif}.ds-context a{min-height:44px;display:inline-flex;align-items:center;gap:10px;color:var(--gold-light,#e0c984);font-size:.84rem;font-weight:800;text-decoration:none}.ds-context svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}.ds-context span{color:var(--muted,#9ba9b9);font-size:.78rem;font-weight:700}.ds-context a:hover{text-decoration:underline;text-underline-offset:6px}.ds-context a:focus-visible{outline:3px solid var(--gold-light,#e0c984);outline-offset:4px}"
+    },
+    {
+      "name": "Linha institucional",
+      "kind": "custom",
+      "description": "Entidade apresentada como linha editorial, sem cartão.",
+      "html": "<article class=\"ds-entity\"><div class=\"ds-entity-mark\"></div><div><h2>Loja de Perfeição Adonhiram</h2><p>Corpo filosófico dedicado aos graus de aperfeiçoamento.</p></div></article>",
+      "css": ".ds-entity{display:grid;grid-template-columns:90px 1fr;gap:28px;align-items:center;padding:38px 0;border-top:1px solid rgba(11,22,38,.18);background:var(--paper,#f4f0e7);color:var(--ink,#0b1626)}.ds-entity-mark{width:70px;height:70px;border:1px solid var(--gold,#c6a65b)}.ds-entity h2{margin:0 0 5px;font:600 2.2rem/1.1 'Cormorant Garamond',serif}.ds-entity p{margin:0;color:#586578;font:400 1rem/1.65 Manrope,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Santuário Editorial",
+    "overview": "O sistema combina a solenidade de um acervo institucional com a clareza de uma publicação contemporânea. Azul profundo cria reserva e concentração; papel quente oferece leitura; ouro aparece apenas para hierarquia, orientação e ação. A composição é formal sem ser burocrática.",
+    "keyCharacteristics": ["Sóbrio, institucional e documental.", "Alto contraste entre superfícies de tinta e papel.", "Hierarquia criada por tipografia, espaço e linhas.", "Ouro raro e funcional.", "Formas predominantemente retas."],
+    "rules": [
+      { "name": "Rare Gold", "body": "O ouro orienta e hierarquiza; nunca deve preencher grandes superfícies nem competir com o conteúdo.", "section": "colors" },
+      { "name": "Two Voices", "body": "Cormorant fala pela tradição; Manrope fala pela orientação.", "section": "typography" },
+      { "name": "Flat by Default", "body": "Sombras são funcionais, nunca ornamento recorrente.", "section": "elevation" }
+    ],
+    "dos": ["Do usar ouro apenas para hierarquia, foco e ação.", "Do preservar alvos de toque de pelo menos 44px e foco visível.", "Do alternar superfícies de tinta e papel para estruturar narrativas longas."],
+    "donts": ["Don't introduzir gradientes em texto, vidro decorativo, emojis como ícones ou cartões genéricos.", "Don't transformar ouro em cor de fundo dominante.", "Don't inventar fotografias, depoimentos, fatos históricos ou textos institucionais."]
+  }
+}

@@ -23,7 +23,7 @@ const links = [
 
 export default function Page() {
   return (
-    <SiteChrome>
+    <SiteChrome currentPath="/links" currentLabel="Links institucionais">
       <main className="links-page">
         <header>
           <h1>Links institucionais</h1>

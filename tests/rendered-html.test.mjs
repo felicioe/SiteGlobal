@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path = "/") {
@@ -47,4 +48,50 @@ test("renderiza a agenda pública sem nomes civis", async () => {
   assert.match(html, /Agenda/);
   assert.match(html, /nomes históricos/);
   assert.doesNotMatch(html, /nome_civil|nome profano/);
+});
+
+test("todas as rotas públicas respondem e preservam a estrutura acessível", async () => {
+  const routes = ["/", "/instituicoes", "/historia", "/agenda", "/publicacoes", "/links", "/contato"];
+  for (const route of routes) {
+    const response = await render(route);
+    assert.equal(response.status, 200, `Falha ao renderizar ${route}`);
+    const html = await response.text();
+    assert.match(html, /<html[^>]+lang="pt-BR"/);
+    assert.match(html, /Pular para o conteúdo/);
+    assert.match(html, /<main(?:\s|>)/);
+    if (route !== "/") {
+      assert.match(html, /data-back-link/);
+      assert.match(html, /Voltar/);
+      assert.match(html, /aria-current="page"/);
+    }
+  }
+});
+
+test("publica arquivos de descoberta para buscadores", async () => {
+  const robots = await readFile(new URL("../public/robots.txt", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
+  assert.match(robots, /Sitemap: https:\/\/associacaoadonhiramita\.org\/sitemap\.xml/);
+  for (const route of ["", "instituicoes", "historia", "agenda", "publicacoes", "links", "contato"]) {
+    assert.match(sitemap, new RegExp(`<loc>https://associacaoadonhiramita\\.org/${route}</loc>`));
+  }
+});
+
+test("mantém o hero contido no viewport móvel", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero__content\s*\{[^}]*min-width:\s*0;[^}]*max-width:\s*100%/s);
+  assert.match(css, /\.hero h1\s*\{[^}]*max-width:\s*100%;[^}]*overflow-wrap:\s*anywhere;/s);
+});
+
+test("exporta cabeçalhos de segurança essenciais", async () => {
+  const exporter = await readFile(new URL("../scripts/export-static.mjs", import.meta.url), "utf8");
+  assert.match(exporter, /Strict-Transport-Security/);
+  assert.match(exporter, /Permissions-Policy/);
+  assert.match(exporter, /X-Content-Type-Options/);
+  assert.match(exporter, /Referrer-Policy/);
+});
+
+test("exporta retorno contextual com fallback para o início", async () => {
+  const exporter = await readFile(new URL("../scripts/export-static.mjs", import.meta.url), "utf8");
+  assert.match(exporter, /data-back-link/);
+  assert.match(exporter, /window\.history\.back\(\)/);
 });

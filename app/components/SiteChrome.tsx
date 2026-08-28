@@ -11,7 +11,13 @@ const navigation = [
   ["Contato", "/contato"],
 ];
 
-export function SiteChrome({ children }: { children: React.ReactNode }) {
+type SiteChromeProps = {
+  children: React.ReactNode;
+  currentPath?: string;
+  currentLabel?: string;
+};
+
+export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteChromeProps) {
   return (
     <div className="site-shell">
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -22,7 +28,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         </Link>
         <nav aria-label="Navegação principal">
           {navigation.map(([label, href]) => (
-            <Link href={href} key={href}>{label}</Link>
+            <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
           ))}
         </nav>
         <a className="header-access" href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
@@ -35,7 +41,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           </summary>
           <nav aria-label="Navegação móvel">
             {navigation.map(([label, href]) => (
-              <Link href={href} key={href}>{label}</Link>
+              <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
             ))}
             <a href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
               Área restrita
@@ -43,6 +49,17 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           </nav>
         </details>
       </header>
+      {currentPath !== "/" && currentLabel && (
+        <nav className="page-context" aria-label="Localização na estrutura do site">
+          <Link href="/" data-back-link aria-label={`Voltar à página anterior; se não houver histórico, ir ao início. Seção atual: ${currentLabel}`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>Voltar</span>
+          </Link>
+          <span className="page-context__current" aria-current="page">{currentLabel}</span>
+        </nav>
+      )}
       <div id="conteudo">{children}</div>
       <footer className="site-footer">
         <div className="footer-brand">

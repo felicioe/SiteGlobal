@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function HistoriaPage() {
   return (
-    <SiteChrome>
+    <SiteChrome currentPath="/historia" currentLabel="Nossa História">
       <main className="history-page">
         <section className="history-hero" aria-labelledby="history-title">
           <div className="history-hero__copy">
@@ -50,7 +50,7 @@ export default function HistoriaPage() {
           </div>
           <figure className="history-hero__emblem">
             <div className="history-hero__halo" aria-hidden="true" />
-            <Image src="/institucional/stekna-sgcab.jpeg" alt="Stekenna, brasão do Rito Adonhiramita" width={900} height={780} priority unoptimized />
+            <Image src="/institucional/stekna-sgcab.webp" alt="Stekenna, brasão do Rito Adonhiramita" width={900} height={780} priority unoptimized />
             <figcaption>Stekenna — brasão do Rito Adonhiramita</figcaption>
           </figure>
         </section>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AgendaPage() {
   return (
-    <SiteChrome>
+    <SiteChrome currentPath="/agenda" currentLabel="Agenda">
       <main className="agenda-page">
         <header className="agenda-heading">
           <h1>Agenda</h1>

@@ -46,6 +46,8 @@ function rotuloDoGrau(grau: number, nome: string | null) {
 export function AgendaPublica() {
   const [agenda, setAgenda] = useState<Sessao[] | null>(null);
   const [erro, setErro] = useState(false);
+  const [tentativa, setTentativa] = useState(0);
+  const [recarregando, setRecarregando] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,19 +56,22 @@ export function AgendaPublica() {
         if (!response.ok) throw new Error("Agenda indisponível");
         return response.json() as Promise<{ agenda: Sessao[] }>;
       })
-      .then((payload) => setAgenda(payload.agenda))
+      .then((payload) => setAgenda(Array.isArray(payload.agenda) ? payload.agenda : []))
       .catch((error: Error) => {
         if (error.name !== "AbortError") setErro(true);
-      });
+      })
+      .finally(() => setRecarregando(false));
     return () => controller.abort();
-  }, []);
+  }, [tentativa]);
 
   if (erro) {
     return (
       <section className="agenda-state" role="alert">
         <h2>Agenda temporariamente indisponível</h2>
-        <p>Tente novamente em alguns instantes.</p>
-        <button type="button" onClick={() => window.location.reload()}>Atualizar agenda</button>
+        <p>Tente novamente em alguns instantes. A página não precisa ser recarregada.</p>
+        <button type="button" disabled={recarregando} onClick={() => { setAgenda(null); setErro(false); setRecarregando(true); setTentativa((valor) => valor + 1); }}>
+          {recarregando ? "Atualizando agenda…" : "Tentar novamente"}
+        </button>
       </section>
     );
   }

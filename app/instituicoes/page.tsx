@@ -6,4 +6,4 @@ export const metadata: Metadata = {
   description: "Conheça as instituições vinculadas à Associação Capitular Adonhiramita ao Vale de Itajaí.",
 };
 
-export default function Page() { return <ConstructionPage title="Instituições" />; }
+export default function Page() { return <ConstructionPage title="Instituições" path="/instituicoes" />; }
