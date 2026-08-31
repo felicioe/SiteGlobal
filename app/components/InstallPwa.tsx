@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type InstallPrompt = Event & {
   prompt: () => Promise<void>;
@@ -46,7 +47,7 @@ export function InstallPwa({ compact = false }: { compact?: boolean }) {
   if (compact) return <button className="pwa-install pwa-install--compact" type="button" onClick={instalar}>Instalar aplicativo</button>;
 
   return <aside className="pwa-callout" aria-label="Instalar aplicativo da Associação">
-    <img src="/icons/icon-192.png" alt="" width="48" height="48" />
+    <Image src="/icons/icon-192.png" alt="" width={48} height={48} unoptimized />
     <div><strong>Tenha a Associação na tela inicial</strong><span>Acesso rápido, como um aplicativo.</span></div>
     <button className="pwa-install" type="button" onClick={instalar}>Instalar</button>
     {mostrarAjuda && <p role="status">No iPhone ou iPad: toque em Compartilhar e depois em “Adicionar à Tela de Início”.</p>}
