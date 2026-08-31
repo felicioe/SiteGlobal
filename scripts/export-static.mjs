@@ -46,6 +46,8 @@ await cp(path.join(root, "public/sitemap.xml"), path.join(output, "sitemap.xml")
 const htaccess = `Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /index.html
+AddType application/manifest+json .webmanifest
+AddType application/javascript .js
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

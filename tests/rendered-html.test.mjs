@@ -105,6 +105,7 @@ test("exporta cabeçalhos de segurança essenciais", async () => {
   assert.match(exporter, /Permissions-Policy/);
   assert.match(exporter, /X-Content-Type-Options/);
   assert.match(exporter, /Referrer-Policy/);
+  assert.match(exporter, /application\/manifest\+json/);
 });
 
 test("exporta retorno contextual com fallback para o início", async () => {
