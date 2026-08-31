@@ -10,6 +10,11 @@ Associação. Não confundir os dois projetos:
 
 ## Estado confirmado em 31/08/2026
 
+- A auditoria consolidada de portal, sistema, desktop e mobile está em
+  `docs/AUDITORIA-GERAL-2026-08-31.md`. Resultado atual: **15/20 (Bom)**,
+  com 0 P0, 3 P1, 6 P2 e 2 P3. Ler esse relatório antes de declarar a revisão
+  completa ou iniciar a próxima rodada de correções.
+
 - Portal público, agenda, publicações, contato e rota genérica de página CMS
   respondem `200 OK`.
 - O botão `Área restrita`, inclusive no menu mobile, aponta para
