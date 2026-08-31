@@ -16,7 +16,11 @@ const sans = Manrope({
 export const metadata: Metadata = {
   title: "Associação Capitular Adonhiramita",
   description: "Portal institucional da Loja de Perfeição Adonhiram e do Sublime Capítulo Adonhiramita Ayres Gevaerd.",
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  manifest: "/manifest.webmanifest",
+  applicationName: "Associação Adonhiramita",
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Associação" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/icons/apple-touch-icon.png" },
+  themeColor: "#0b1626",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -5,8 +5,16 @@ da Loja de Perfeição Adonhiram e do Sublime Capítulo Adonhiramita Ayres Gevae
 
 ## Situação atual
 
-Primeira versão em desenvolvimento local. Este repositório ainda não está ligado
-ao domínio público e não possui publicação automática configurada.
+Portal publicado em `https://associacaoadonhiramita.org`, com exportação
+estática automática pelo GitHub Actions e implantação na Hostinger. Agenda,
+publicações, páginas e menu público podem consumir o CMS hospedado em
+`https://sistema.associacaoadonhiramita.org`.
+
+O portal também é instalável como PWA. O manifesto, os ícones e o service
+worker ficam em `public/` e são copiados para `static-site/` pelo exportador.
+
+Para o histórico operacional mais recente e os cuidados de continuidade, leia
+[`CLAUDE.md`](./CLAUDE.md).
 
 ## Desenvolvimento
 

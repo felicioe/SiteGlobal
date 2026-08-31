@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { InstallPwa } from "./InstallPwa";
 
 const fallbackNavigation = [
   ["Início", "/"],
@@ -62,7 +63,7 @@ export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteCh
             <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
           ))}
         </nav>
-        <a className="header-access" href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
+        <a className="header-access" href="https://sistema.associacaoadonhiramita.org/auth">
           Área restrita
         </a>
         <details className="mobile-nav">
@@ -74,9 +75,10 @@ export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteCh
             {navigation.map(([label, href]) => (
               <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
             ))}
-            <a href="https://sistema.associacaoadonhiramita.org/" target="_blank" rel="noreferrer">
+            <a href="https://sistema.associacaoadonhiramita.org/auth">
               Área restrita
             </a>
+            <InstallPwa compact />
           </nav>
         </details>
       </header>
@@ -92,6 +94,7 @@ export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteCh
         </nav>
       )}
       <div id="conteudo">{children}</div>
+      <InstallPwa />
       <footer className="site-footer">
         <div className="footer-brand">
           <Image src="/brand/sglfm-mark.svg" alt="" width={24} height={31} unoptimized />

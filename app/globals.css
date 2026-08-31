@@ -263,6 +263,15 @@ img { display: block; max-width: 100%; }
 .footer-brand strong { color: white; letter-spacing: .1em; }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--gold-light); text-underline-offset: 4px; }
+.pwa-callout { position: fixed; z-index: 30; right: 24px; bottom: 24px; width: min(440px, calc(100vw - 48px)); display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 16px; border: 1px solid rgba(198,166,91,.45); background: var(--ink); color: var(--paper); box-shadow: 0 20px 44px rgba(0,0,0,.34); }
+.pwa-callout img { width: 48px; height: 48px; }
+.pwa-callout strong, .pwa-callout span { display: block; }
+.pwa-callout strong { font-family: var(--font-display), serif; font-size: 1.16rem; }
+.pwa-callout span { color: var(--muted); font-size: .78rem; }
+.pwa-callout p { grid-column: 1 / -1; margin: 4px 0 0; color: var(--gold-light); font-size: .82rem; line-height: 1.5; }
+.pwa-install { min-height: 46px; padding: 0 18px; border: 0; background: var(--gold); color: var(--ink); font: inherit; font-size: .78rem; font-weight: 800; cursor: pointer; }
+.pwa-install:hover { background: var(--gold-light); }
+.pwa-install--compact { width: 100%; margin-top: 8px; }
 
 @media (max-width: 1050px) {
   .site-header { grid-template-columns: auto auto; justify-content: space-between; padding: 18px 5vw; }
@@ -328,6 +337,8 @@ img { display: block; max-width: 100%; }
   .content-heading h1, .cms-page h1 { font-size: clamp(3.4rem, 14vw, 4.6rem); }
   .news-item { grid-template-columns: 1fr; gap: 12px; padding: 34px 0 40px; }
   .news-item time { grid-row: auto; }
+  .pwa-callout { right: 5vw; bottom: 16px; width: 90vw; grid-template-columns: 42px minmax(0, 1fr) auto; padding: 13px; }
+  .pwa-callout img { width: 42px; height: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -34,10 +34,12 @@ for (const route of routes) {
 }
 
 await cp(path.join(root, "dist/client/assets"), path.join(output, "assets"), { recursive: true });
-for (const directory of ["brand", "institucional", "publicacoes"]) {
+for (const directory of ["brand", "icons", "institucional", "publicacoes"]) {
   await cp(path.join(root, "public", directory), path.join(output, directory), { recursive: true });
 }
 await cp(path.join(root, "public/favicon.svg"), path.join(output, "favicon.svg"));
+await cp(path.join(root, "public/manifest.webmanifest"), path.join(output, "manifest.webmanifest"));
+await cp(path.join(root, "public/sw.js"), path.join(output, "sw.js"));
 await cp(path.join(root, "public/robots.txt"), path.join(output, "robots.txt"));
 await cp(path.join(root, "public/sitemap.xml"), path.join(output, "sitemap.xml"));
 

@@ -21,6 +21,7 @@ test("renderiza a página institucional", async () => {
   assert.match(html, /Associação Capitular Adonhiramita/);
   assert.match(html, /Conhecer a História do Rito/);
   assert.match(html, /Área restrita/);
+  assert.match(html, /href="https:\/\/sistema\.associacaoadonhiramita\.org\/auth"/);
   assert.doesNotMatch(html, /Acessar o SGLFM|Acessar o sistema|Entrar no sistema/);
   assert.doesNotMatch(html, /John Doe|Twenty Twenty-Five|codex-preview/);
 });
@@ -73,6 +74,22 @@ test("publica arquivos de descoberta para buscadores", async () => {
   assert.match(robots, /Sitemap: https:\/\/associacaoadonhiramita\.org\/sitemap\.xml/);
   for (const route of ["", "instituicoes", "historia", "agenda", "publicacoes", "links", "contato"]) {
     assert.match(sitemap, new RegExp(`<loc>https://associacaoadonhiramita\\.org/${route}</loc>`));
+  }
+});
+
+test("publica PWA instalável com identidade institucional", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../public/manifest.webmanifest", import.meta.url), "utf8"));
+  const serviceWorker = await readFile(new URL("../public/sw.js", import.meta.url), "utf8");
+  assert.equal(manifest.display, "standalone");
+  assert.equal(manifest.start_url, "/?source=pwa");
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "192x192"));
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "512x512"));
+  assert.ok(manifest.icons.some((icon) => icon.purpose === "maskable"));
+  assert.match(serviceWorker, /associacao-v1/);
+  assert.match(serviceWorker, /event\.request\.mode === "navigate"/);
+  for (const icon of ["icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"]) {
+    const bytes = await readFile(new URL(`../public/icons/${icon}`, import.meta.url));
+    assert.ok(bytes.length > 1000, `${icon} não foi gerado corretamente`);
   }
 });
 
