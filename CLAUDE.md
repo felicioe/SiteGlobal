@@ -12,8 +12,10 @@ Associação. Não confundir os dois projetos:
 
 - Portal público, agenda, publicações, contato e rota genérica de página CMS
   respondem `200 OK`.
-- O botão `Área restrita`, inclusive no menu mobile, aponta diretamente para
-  `https://sistema.associacaoadonhiramita.org/auth`.
+- O botão `Área restrita`, inclusive no menu mobile, aponta para
+  `https://sistema.associacaoadonhiramita.org/dashboard`. Essa é a entrada do
+  sistema: com sessão abre o ambiente operacional; sem sessão redireciona para
+  `/auth`; perfis de Irmão são encaminhados pelo próprio sistema a `/painel`.
 - O healthcheck do sistema responde `200 OK`.
 - A API pública do CMS responde sem modo degradado.
 - Agenda e notícias reais aparecem no portal público.
@@ -84,7 +86,8 @@ Depois de publicar, validar no domínio real:
 
 1. HTTP 200 para `/`, `/agenda/`, `/publicacoes/`, `/pagina/`,
    `/manifest.webmanifest`, `/sw.js` e ícones 192/512.
-2. No mobile, abrir o menu e confirmar que `Área restrita` termina em `/auth`.
+2. No mobile, abrir o menu e confirmar que `Área restrita` solicita
+   `/dashboard`; sem sessão, o redirecionamento esperado termina em `/auth`.
 3. Confirmar que agenda e publicações carregam dados da API do sistema.
 4. Confirmar `200 OK` em `https://sistema.associacaoadonhiramita.org/api/health`.
 5. Testar instalação PWA em Chrome/Android e “Adicionar à Tela de Início” em

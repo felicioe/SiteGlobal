@@ -1,4 +1,4 @@
-const CACHE = "associacao-v1";
+const CACHE = "associacao-v2";
 const OFFLINE = ["/", "/agenda/", "/publicacoes/", "/favicon.svg", "/icons/icon-192.png"];
 
 self.addEventListener("install", (event) => {

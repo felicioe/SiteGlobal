@@ -21,7 +21,7 @@ test("renderiza a página institucional", async () => {
   assert.match(html, /Associação Capitular Adonhiramita/);
   assert.match(html, /Conhecer a História do Rito/);
   assert.match(html, /Área restrita/);
-  assert.match(html, /href="https:\/\/sistema\.associacaoadonhiramita\.org\/auth"/);
+  assert.match(html, /href="https:\/\/sistema\.associacaoadonhiramita\.org\/dashboard"/);
   assert.doesNotMatch(html, /Acessar o SGLFM|Acessar o sistema|Entrar no sistema/);
   assert.doesNotMatch(html, /John Doe|Twenty Twenty-Five|codex-preview/);
 });
@@ -85,7 +85,7 @@ test("publica PWA instalável com identidade institucional", async () => {
   assert.ok(manifest.icons.some((icon) => icon.sizes === "192x192"));
   assert.ok(manifest.icons.some((icon) => icon.sizes === "512x512"));
   assert.ok(manifest.icons.some((icon) => icon.purpose === "maskable"));
-  assert.match(serviceWorker, /associacao-v1/);
+  assert.match(serviceWorker, /associacao-v2/);
   assert.match(serviceWorker, /event\.request\.mode === "navigate"/);
   for (const icon of ["icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"]) {
     const bytes = await readFile(new URL(`../public/icons/${icon}`, import.meta.url));

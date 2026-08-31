@@ -63,7 +63,7 @@ export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteCh
             <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
           ))}
         </nav>
-        <a className="header-access" href="https://sistema.associacaoadonhiramita.org/auth">
+        <a className="header-access" href="https://sistema.associacaoadonhiramita.org/dashboard">
           Área restrita
         </a>
         <details className="mobile-nav">
@@ -75,7 +75,7 @@ export function SiteChrome({ children, currentPath = "/", currentLabel }: SiteCh
             {navigation.map(([label, href]) => (
               <Link href={href} key={href} aria-current={currentPath === href ? "page" : undefined}>{label}</Link>
             ))}
-            <a href="https://sistema.associacaoadonhiramita.org/auth">
+            <a href="https://sistema.associacaoadonhiramita.org/dashboard">
               Área restrita
             </a>
             <InstallPwa compact />
